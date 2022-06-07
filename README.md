@@ -2,6 +2,8 @@
 
 ## Build
 
+### Static library
+
 ```bash
 cd static_lib/lib
 mkdir build
@@ -18,9 +20,28 @@ cmake ..
 cmake --build .
 ```
 
+### Dynamic library
+
+```bash
+cd dynamic_lib/lib
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
+```bash
+cd dynamic_lib
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
 ## Practice
 
-### Windows, Visual C++
+### Name mangling
+
+#### Windows, Visual C++
 
 Using Developer Command Prompt for VS list symbols by tool [DUMPBIN](https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/756as972(v=vs.120)) inside "static_lib/build/sumLib.dir/Debug":
 
@@ -37,7 +58,7 @@ with the article [Visual C++ name mangling](https://en.m.wikiversity.org/wiki/Vi
 
 For example: "HHH" is "int, int and int" (as "it returns int, and accepts 2 int-arguments").
 
-### Linux, GCC
+#### Linux, GCC
 
 List symbols by tool [nm (name mangling)](https://en.wikipedia.org/wiki/Nm_(Unix)) inside "static_lib/build":
 
@@ -55,3 +76,7 @@ with the article [External Names (a.k.a. Mangling)](https://itanium-cxx-abi.gith
 For example: "dd" is "double and double" (as "it accepts 2 double-arguments").
 
 There is no info about the return type. The return type of the function is not part of the name mangling. Return types are enforced by the compiler directly based on type rules.
+
+### Dynamic library loading
+
+Don't forget to put your SO or DLL file in a place where the executable could find it!
